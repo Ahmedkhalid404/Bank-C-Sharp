@@ -1,0 +1,15 @@
+D:\Bank system c-sharp\Bank-C-Sharp\Bank_system\Bank_system\bin\Debug\net8.0\Bank_system.exe
+D:\Bank system c-sharp\Bank-C-Sharp\Bank_system\Bank_system\bin\Debug\net8.0\Bank_system.deps.json
+D:\Bank system c-sharp\Bank-C-Sharp\Bank_system\Bank_system\bin\Debug\net8.0\Bank_system.runtimeconfig.json
+D:\Bank system c-sharp\Bank-C-Sharp\Bank_system\Bank_system\bin\Debug\net8.0\Bank_system.dll
+D:\Bank system c-sharp\Bank-C-Sharp\Bank_system\Bank_system\bin\Debug\net8.0\Bank_system.pdb
+D:\Bank system c-sharp\Bank-C-Sharp\Bank_system\Bank_system\obj\Debug\net8.0\Bank_system.GeneratedMSBuildEditorConfig.editorconfig
+D:\Bank system c-sharp\Bank-C-Sharp\Bank_system\Bank_system\obj\Debug\net8.0\Bank_system.AssemblyInfoInputs.cache
+D:\Bank system c-sharp\Bank-C-Sharp\Bank_system\Bank_system\obj\Debug\net8.0\Bank_system.AssemblyInfo.cs
+D:\Bank system c-sharp\Bank-C-Sharp\Bank_system\Bank_system\obj\Debug\net8.0\Bank_system.csproj.CoreCompileInputs.cache
+D:\Bank system c-sharp\Bank-C-Sharp\Bank_system\Bank_system\obj\Debug\net8.0\Bank_system.sourcelink.json
+D:\Bank system c-sharp\Bank-C-Sharp\Bank_system\Bank_system\obj\Debug\net8.0\Bank_system.dll
+D:\Bank system c-sharp\Bank-C-Sharp\Bank_system\Bank_system\obj\Debug\net8.0\refint\Bank_system.dll
+D:\Bank system c-sharp\Bank-C-Sharp\Bank_system\Bank_system\obj\Debug\net8.0\Bank_system.pdb
+D:\Bank system c-sharp\Bank-C-Sharp\Bank_system\Bank_system\obj\Debug\net8.0\Bank_system.genruntimeconfig.cache
+D:\Bank system c-sharp\Bank-C-Sharp\Bank_system\Bank_system\obj\Debug\net8.0\ref\Bank_system.dll
