@@ -8,60 +8,26 @@ namespace Bank_system
         {
 
             List<User> users = User.getAllUsers();
-            User Current_user = new User();
+            User current_user = new User();
 
-            String email , password;
+            bool isValid = SystemManager.login(ref current_user, users);
 
-            bool isValid = false;
-            while (!isValid)
+            while( !isValid )
             {
-
-                Write("\nEnter your email : ");
-                email = ReadLine();
-
-                Write("\nEnter your pass : ");
-                password = ReadPassword();
-
-                foreach (User user in users) 
-                {
-                    WriteLine($"{user.Email} {user.Password}");
-                    if (user.Email == email && user.Password == User.Hash(password))
-                    {
-                        Current_user = user;
-                        isValid = true;
-                        break;
-                    }
-                }
-
+                SystemManager.ShowIncorretUser();
+                isValid = SystemManager.login(ref current_user, users);
             }
+            SystemManager.ShowLoadingAnimation(3);
 
-
-            WriteLine($"Welcome {Current_user.FirstName} {Current_user.LastName}");
+            //WriteLine($"Welcome {current_user.FirstName} {current_user.LastName}");
+            WriteLine($"{current_user.FirstName} {current_user.LastName}");
+            SystemManager.DisplayWelcomeScreen(current_user);
 
         }
 
-        static string ReadPassword()
-        {
-            string password = "";
-            ConsoleKeyInfo key;
+        
 
-            do
-            {
-                key = Console.ReadKey(intercept: true); // Reads key without displaying it
-
-                if (key.Key != ConsoleKey.Backspace && key.Key != ConsoleKey.Enter)
-                {
-                    password += key.KeyChar;
-                    Console.Write("*"); // Displays * instead of the actual character
-                }
-                else if (key.Key == ConsoleKey.Backspace && password.Length > 0)
-                {
-                    password = password[0..^1];
-                    Console.Write("\b \b"); // Removes last * from console
-                }
-            } while (key.Key != ConsoleKey.Enter);
-
-            return password;
-        }
+        
+        
     }
 }
