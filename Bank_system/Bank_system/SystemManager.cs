@@ -5,7 +5,38 @@ namespace Bank_system
     internal class SystemManager
     {
 
-        public static void DisplayWelcomeScreen(User user)
+        public static void ShowExitScreen(int seconds = 2)
+        {
+            string message = "Thank you for using our services.";
+            int windowWidth = Console.WindowWidth;
+            int messageLength = message.Length;
+            int sleepTime = 25;
+
+            Console.Clear();
+
+            for (int i = 0; i < windowWidth - messageLength; i++)
+            {
+                Console.SetCursorPosition(i, Console.WindowHeight / 2);
+                Console.WriteLine(message);
+                Thread.Sleep(sleepTime);
+                Console.Clear();
+            }
+
+            for (int i = windowWidth - messageLength; i >= 0; i--)
+            {
+                Console.SetCursorPosition(i, Console.WindowHeight / 2);
+                Console.WriteLine(message);
+                Thread.Sleep(sleepTime);
+                Console.Clear();
+            }
+
+            Thread.Sleep(seconds * 1000);
+            Console.Clear();
+            Environment.Exit(0);
+        }
+
+
+        public static int DisplayWelcomeScreen(User user)
         {
             Console.Clear();
 
@@ -32,8 +63,8 @@ namespace Bank_system
             }
 
             Console.Write("\n\nPlease choose an option: ");
-            int option = Convert.ToInt32(Console.Read());
-            Write(option);
+            int option = Convert.ToInt32(Console.ReadLine());
+            return option;
         }
 
         public static bool login(ref User current_user,List<User> users)

@@ -21,7 +21,49 @@ namespace Bank_system
 
             //WriteLine($"Welcome {current_user.FirstName} {current_user.LastName}");
             WriteLine($"{current_user.FirstName} {current_user.LastName}");
-            SystemManager.DisplayWelcomeScreen(current_user);
+            int option = SystemManager.DisplayWelcomeScreen(current_user);
+
+            WriteLine( current_user.Role + " " + option );
+
+            if( current_user.Role == Roles.Admin)
+            {
+                if (option == 1) // add user
+                {
+                    SystemManager.ClearConsole();
+                    users = User.AddUser(users);
+                }
+                else if (option == 2)
+                {
+
+                }
+                else if (option == 3) 
+                {
+                    SystemManager.ShowExitScreen();
+                }
+
+
+                option = SystemManager.DisplayWelcomeScreen(current_user);
+
+            }
+            else
+            {
+                if (option == 1)
+                {
+                    
+                }
+                else if (option == 2)
+                {
+
+                }
+                else if (option == 3)
+                {
+                }
+                else if (option == 4)
+                {
+                    SystemManager.ShowExitScreen();
+                }
+                option = SystemManager.DisplayWelcomeScreen(current_user);
+            }
 
         }
 

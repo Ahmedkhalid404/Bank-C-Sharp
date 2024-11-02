@@ -1,9 +1,11 @@
-﻿using System;
+﻿using static System.Console;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using System.ComponentModel;
 
 namespace Bank_system
 {
@@ -15,6 +17,29 @@ namespace Bank_system
         private string email;
         private string password;
         private Roles role;
+
+        public static List<User> AddUser(List<User> users)
+        {
+            WriteLine("Add User : ");
+            User NewUser = new User();
+            NewUser.Id = users.Max(x => x.Id) + 1;
+            Write("First Name : ");
+            NewUser.FirstName = ReadLine();
+            Write("Last Name : ");
+            NewUser.LastName = ReadLine();
+            Write("Email : ");
+            NewUser.Email = ReadLine();
+            Write("Password : ");
+            NewUser.Password = SystemManager.ReadPassword();
+
+            string filePath = @"D:\Bank system c-sharp\Bank-C-Sharp\data\users.txt";
+            string userEntry = $"{NewUser.id},{NewUser.first_name},{NewUser.last_name},{NewUser.email},{NewUser.password},user";
+            using (StreamWriter writer = new StreamWriter(filePath, append: true))
+            {
+                writer.WriteLine(userEntry);
+            }
+            return User.getAllUsers();
+        }
 
         public static List<User> getAllUsers() {
             string path = @"D:\Bank system c-sharp\Bank-C-Sharp\data\users.txt";
