@@ -27,42 +27,48 @@ namespace Bank_system
 
             if( current_user.Role == Roles.Admin)
             {
-                if (option == 1) // add user
+                while( true)
                 {
-                    SystemManager.ClearConsole();
-                    users = User.AddUser(users);
-                }
-                else if (option == 2)
-                {
+                    if (option == 1) // add user
+                    {
+                        SystemManager.ClearConsole();
+                        users = User.AddUser(users);
+                    }
+                    else if (option == 2)
+                    {
 
-                }
-                else if (option == 3) 
-                {
-                    SystemManager.ShowExitScreen();
-                }
+                    }
+                    else if (option == 3)
+                    {
+                        SystemManager.ShowExitScreen();
+                    }
 
 
-                option = SystemManager.DisplayWelcomeScreen(current_user);
+                    option = SystemManager.DisplayWelcomeScreen(current_user);
+                }
 
             }
             else
             {
-                if (option == 1)
+                while( true)
                 {
-                    
-                }
-                else if (option == 2)
-                {
+                    if (option == 1)
+                    {
 
+                    }
+                    else if (option == 2)
+                    {
+
+                    }
+                    else if (option == 3)
+                    {
+                    }
+                    else if (option == 4)
+                    {
+                        SystemManager.ShowExitScreen();
+                    }
+                    option = SystemManager.DisplayWelcomeScreen(current_user);
                 }
-                else if (option == 3)
-                {
-                }
-                else if (option == 4)
-                {
-                    SystemManager.ShowExitScreen();
-                }
-                option = SystemManager.DisplayWelcomeScreen(current_user);
             }
 
         }
