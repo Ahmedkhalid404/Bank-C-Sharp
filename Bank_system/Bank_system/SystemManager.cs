@@ -5,9 +5,8 @@ namespace Bank_system
     internal class SystemManager
     {
 
-        public static void ShowExitScreen(int seconds = 2)
+        public static void ShowExitScreen(string message = "Thank you for using our services.", int seconds = 2)
         {
-            string message = "Thank you for using our services.";
             int windowWidth = Console.WindowWidth;
             int messageLength = message.Length;
             int sleepTime = 25;
@@ -49,12 +48,12 @@ namespace Bank_system
             Thread.Sleep(1000);
 
             List<string[]> options = new List<string[]>(){
-                   new string[]{ "1. Add User", "2. Activation requests", "3. Exit" },
+                   new string[]{ "1. Add User", "2. Activation requests", "3. Users" , "4. Exit" },
                    new string[]{ "1. My balance", "2. Activation request", "3. Send Money" , "4. Exit" }
             };
             int optionsStartPosition = (windowWidth - 20) / 2;
 
-            int idx = (user.Role == Roles.Admin ? 0 : 1);
+            int idx = (user.Role == Roles.Owner || user.Role == Roles.Admin ? 0 : 1);
 
             for (int i = 0; i < options[idx].Length; i++)
             {
@@ -85,6 +84,10 @@ namespace Bank_system
                 if (user.Email == email && user.Password == User.Hash(password))
                 {
                     current_user = user;
+                    if(user.Status != UserStatus.Allowed)
+                    {
+                        ShowExitScreen("You are not allow to login :)");
+                    }
                     isValid = true;
                     break;
                 }

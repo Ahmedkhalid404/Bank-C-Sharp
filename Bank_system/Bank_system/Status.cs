@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Bank_system
 {
-    internal enum Roles
+    internal enum UserStatus
     {
-        Owner,Admin,User
+        Allowed,Baned
     }
 }

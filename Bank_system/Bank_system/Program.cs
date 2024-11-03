@@ -25,14 +25,18 @@ namespace Bank_system
 
             WriteLine( current_user.Role + " " + option );
 
-            if( current_user.Role == Roles.Admin)
+            if( current_user.Role == Roles.Admin || current_user.Role == Roles.Owner)
             {
                 while( true)
                 {
                     if (option == 1) // add user
                     {
                         SystemManager.ClearConsole();
-                        users = User.AddUser(users);
+                        users = User.AddUser(users,current_user);
+                        foreach(var it in users){
+                            WriteLine(it.Id + " " + it.Email);
+                        }
+                        ReadLine(); 
                     }
                     else if (option == 2)
                     {

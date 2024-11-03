@@ -17,8 +17,9 @@ namespace Bank_system
         private string email;
         private string password;
         private Roles role;
+        private UserStatus status;
 
-        public static List<User> AddUser(List<User> users)
+        public static List<User> AddUser(List<User> users,User Current_user)
         {
             WriteLine("Add User : ");
             User NewUser = new User();
@@ -32,12 +33,54 @@ namespace Bank_system
             Write("Password : ");
             NewUser.Password = SystemManager.ReadPassword();
 
+            string role = "user";
+
+            if( Current_user.role == Roles.Owner)
+            {
+                Write("\nRole - if you want admin print 'a' and 'u' for user and 'o' for owner: ");
+                string op = ReadLine().ToLower();
+                if(op[0] == 'o')
+                {
+                    role = "owner";
+                    NewUser.Role = Roles.Owner;
+                }
+                else if (op[0] == 'a')
+                {
+                    role = "admin";
+                    NewUser.Role = Roles.Admin;
+                }
+                else
+                {
+                    role = "user";
+                    NewUser.Role = Roles.User;
+                }
+            }
+
+
+            Write("\nIf you want to add user enter 'y' and 'n' other wise : ");
+            string option = ReadLine().ToLower();
+            if (option[0] == 'n')
+                return User.getAllUsers();
+
+            SystemManager.ShowLoadingAnimation(3);
+
+            foreach(User user in User.getAllUsers())
+            {
+                if( user.email == NewUser.email)
+                {
+                    SystemManager.DisplayMessageForDuration("Failed to add new user (email already exist)",3);
+                    return User.getAllUsers();
+                }
+            }
+
             string filePath = @"D:\Bank system c-sharp\Bank-C-Sharp\data\users.txt";
-            string userEntry = $"{NewUser.id},{NewUser.first_name},{NewUser.last_name},{NewUser.email},{NewUser.password},user";
+            string userEntry = $"{NewUser.id},{NewUser.first_name},{NewUser.last_name},{NewUser.email},{NewUser.password},{role},allowed";
             using (StreamWriter writer = new StreamWriter(filePath, append: true))
             {
                 writer.WriteLine(userEntry);
             }
+            SystemManager.DisplayMessageForDuration("User added successfully", 2);
+
             return User.getAllUsers();
         }
 
@@ -59,7 +102,8 @@ namespace Bank_system
                         LastName = fields[2],
                         Email = fields[3],
                         Set_password_without_hash = fields[4],
-                        Role = (fields[5].ToLower() == "admin" ? Roles.Admin : Roles.User)
+                        Role = (fields[5].ToLower() == "owner" ? Roles.Owner :  (fields[5].ToLower() == "admin" ? Roles.Admin : Roles.User) ),
+                        Status = (fields[6].ToLower() == "allowed" ? UserStatus.Allowed : UserStatus.Baned)
                     };
 
                     users.Add(user);
@@ -123,6 +167,12 @@ namespace Bank_system
         {
             get { return password; }
             set { password = User.Hash(value); }
+        }
+
+        public UserStatus Status
+        {
+            get { return status; }
+            set { status = value; }
         }
 
         public Roles Role
